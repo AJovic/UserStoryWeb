@@ -1,0 +1,1 @@
+export const propertiesUrl = "/api/UserStories/properties"
