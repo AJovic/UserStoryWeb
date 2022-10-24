@@ -46,22 +46,22 @@ export const UserStoryMap = () => {
 
 
     const OnDragChange = () => {
-        setBounds(map.getBounds())
-
-        setMinLat(bounds.ab.lo)
-        setMaxLat(bounds.ab.hi)
-        setMinLng(bounds.Fa.lo)
-        setMaxLng(bounds.Fa.hi)
+        setBoundsFunction()
     }
 
     const onZoomChange = () => {
+        setBoundsFunction()
+    }
+
+    function setBoundsFunction() {
         setBounds(map.getBounds())
-  
+
         setMinLat(bounds.ab.lo)
         setMaxLat(bounds.ab.hi)
         setMinLng(bounds.Fa.lo)
         setMaxLng(bounds.Fa.hi)
     }
+
     return isLoaded && (
 
         <Grid container spacing={2}>
