@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import { getPropertiesApi } from './api';
 
 const containerStyle = {
-    width: '800px',
+    width: '400px',
     height: '400px'
 };
 
@@ -21,16 +21,15 @@ export const UserStoryMap = () => {
         googleMapsApiKey: "AIzaSyDKSNqzVN7AGOYIq_H7hfgRX4rNe0CEWcY"
     });
 
+    const [propertyType, setPropertyType] = React.useState("House");
+
     const [map, setMap] = useState(null);
+    const [properties, setProperties] = useState([]);
     const [selectedMarker, setSelectedMarker] = useState(null);
-    const [bounds, setBounds] = React.useState(null);
     const [minLat, setMinLat] = React.useState(47.219674886540254);
     const [maxLat, setMaxLat] = React.useState(47.59145250007549);
     const [minLng, setMinLng] = React.useState(7.98901578154517);
     const [maxLng, setMaxLng] = React.useState(9.08764859404517);
-
-    const [properties, setProperties] = useState([]);
-    const [propertyType, setPropertyType] = React.useState("House");
 
     const onLoad = useCallback((map) => { setMap(map) }, []);
 
@@ -42,8 +41,8 @@ export const UserStoryMap = () => {
         }
 
         propertiesFromApi()
-    }, [bounds, propertyType]);
 
+    }, [minLat, maxLat, minLng, maxLng, propertyType]);
 
     const OnDragChange = () => {
         setBoundsFunction()
@@ -54,12 +53,14 @@ export const UserStoryMap = () => {
     }
 
     function setBoundsFunction() {
-        setBounds(map.getBounds())
+        if (map) {
+            const bounds = map.getBounds()
 
-        setMinLat(bounds.ab.lo)
-        setMaxLat(bounds.ab.hi)
-        setMinLng(bounds.Fa.lo)
-        setMaxLng(bounds.Fa.hi)
+            setMinLat(bounds.ab.lo)
+            setMaxLat(bounds.ab.hi)
+            setMinLng(bounds.Fa.lo)
+            setMaxLng(bounds.Fa.hi)
+        }
     }
 
     return isLoaded && (

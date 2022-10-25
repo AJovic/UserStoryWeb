@@ -19,11 +19,11 @@ export const PropertyTypeSelect = ({ propertyType, setPropertyType }) => {
   return (
 
     <>
-      <label for="cars">Choose property type:</label>
-      <select style={mystyle} name="cars" id="cars" onChange={handleChange} value={propertyType}>
+      <label >Choose property type:</label>
+
+      <select style={mystyle} onChange={handleChange} value={propertyType}>
         <option value="House">Hotel</option>
         <option value="Apartment">Apartment</option>
-
       </select>
     </>
 
